@@ -79,6 +79,13 @@ def add_task():
     task_entry.delete(0, "end")
     save_tasks()
 
+def clear_tasks():
+
+    for widget in task_frame.winfo_children():
+        widget.destroy()
+
+    save_tasks()
+
 # Кнопка
 add_button = ctk.CTkButton(
     app,
@@ -88,7 +95,20 @@ add_button = ctk.CTkButton(
     command=add_task
 )
 add_button.pack(pady=10)
+
 task_entry.bind("<Return>", lambda event: add_task())
+
+clear_button = ctk.CTkButton(
+    app,
+    text="Очистить всё",
+    width=200,
+    height=40,
+    fg_color="#d9534f",
+    hover_color="#c9302c",
+    command=clear_tasks
+)
+
+clear_button.pack(pady=5)
 
 # Список задач
 task_frame = ctk.CTkScrollableFrame(
@@ -99,3 +119,9 @@ task_frame = ctk.CTkScrollableFrame(
 task_frame.pack(pady=20)
 load_tasks()
 app.mainloop()
+def clear_tasks():
+
+    for widget in task_frame.winfo_children():
+        widget.destroy()
+
+    save_tasks()
