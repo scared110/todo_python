@@ -27,13 +27,30 @@ task_entry = ctk.CTkEntry(
     font=("Arial", 16)
 )
 task_entry.pack(pady=10)
+def add_task():
+
+    task = task_entry.get().strip()
+
+    if task == "":
+        return
+
+    checkbox = ctk.CTkCheckBox(
+        task_frame,
+        text=task,
+        font=("Arial", 15)
+    )
+
+    checkbox.pack(anchor="w", padx=10, pady=5)
+
+    task_entry.delete(0, "end")
 
 # Кнопка
 add_button = ctk.CTkButton(
     app,
     text="Добавить задачу",
     width=200,
-    height=40
+    height=40,
+    command=add_task
 )
 add_button.pack(pady=10)
 
