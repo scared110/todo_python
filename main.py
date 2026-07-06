@@ -88,6 +88,7 @@ add_button = ctk.CTkButton(
     command=add_task
 )
 add_button.pack(pady=10)
+task_entry.bind("<Return>", lambda event: add_task())
 
 # Список задач
 task_frame = ctk.CTkScrollableFrame(
