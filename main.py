@@ -52,6 +52,14 @@ title = ctk.CTkLabel(
 )
 title.pack(pady=30)
 
+counter_label = ctk.CTkLabel(
+    app,
+    text="📋 Всего задач: 0",
+    font=("Arial", 16)
+)
+
+counter_label.pack()
+
 # Поле ввода
 task_entry = ctk.CTkEntry(
     app,
@@ -78,6 +86,7 @@ def add_task():
 
     task_entry.delete(0, "end")
     save_tasks()
+    update_counter()
 
 def clear_tasks():
 
@@ -118,6 +127,14 @@ task_frame = ctk.CTkScrollableFrame(
 )
 task_frame.pack(pady=20)
 load_tasks()
+def update_counter():
+
+    count = len(task_frame.winfo_children())
+
+    counter_label.configure(
+        text=f"📋 Всего задач: {count}"
+    )
+
 app.mainloop()
 def clear_tasks():
 
@@ -125,3 +142,4 @@ def clear_tasks():
         widget.destroy()
 
     save_tasks()
+    update_counter()
